@@ -6,12 +6,16 @@
   "license": "MIT",
   "scripts": {
     "start": "node build/index.js",
-    "dev": "tsc-watch --onSuccess \"npm start\""
+    "dev": "tsc-watch --onSuccess \"npm start\"",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/express": "^5.0.2",
+    "@types/node": "^22.15.30",
+    "prisma": "^6.9.0",
     "tsc": "^2.0.4",
     "tsc-watch": "^7.1.1",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "watch": "^1.0.2"
   },
@@ -19,7 +23,9 @@
     "@apollo/server": "^4.12.2",
     "@as-integrations/express4": "^1.0.0",
     "@as-integrations/express5": "^1.0.0",
+    "@prisma/client": "^6.9.0",
     "express": "^5.1.0",
+    "generate": "^0.14.0",
     "graphql": "^16.11.0"
   }
 }

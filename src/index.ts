@@ -1,6 +1,7 @@
 import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@as-integrations/express5';
+import { prismaClient } from './lib/db';
 
 async function init() {
 const app = express();
@@ -15,7 +16,11 @@ const gqlServer = new ApolloServer({
    type Query {
      hello: String
      say(name: String): String
-   }`,
+   }
+    type Mutation{
+    createUser(firstName: String!,lastName: String!, email: String!, password: String!):Boolean
+    }
+`,
   resolvers:{
     Query: {
         hello: () => 'Hey There!, I am a Graphql server!',
@@ -23,6 +28,22 @@ say: (_, { name }: { name: string }) => {
   return `Hello ${name}, How are you?`;
 }
     },
+    Mutation: {
+      createUser: async (_, { firstName, lastName, email, password }:{ firstName: string, lastName: string, email: string, password: string}) => {
+        // Here you would typically call your database to create a user
+        // For now, we will just return true to indicate success
+        await prismaClient.user.create({
+          data: {
+            firstName,
+            lastName,
+            email,
+            password, // In a real application, make sure to hash the password before storing it
+            salt: 'random_salt', // You should generate a unique salt for each user
+          },
+        });
+        return true; // Indicating the user was created successfully
+      }
+    }
   },
 });
 
