@@ -1,4 +1,5 @@
 import {CreateUserPayload, UserService} from '../../services/user';
+
 import { prismaClient } from '../../lib/db';
 const queries={
 getUserToken: async(_:any, payload:{email:string, password:string })=>{
@@ -14,6 +15,7 @@ getCurrentLoggedInUser: async(_:any,parameters:any,context:any)=>{
     const user=await UserService.getUserById(id);
     return user;
    }
+   return {};
     throw new Error("I don't know who are you?");
 }
 };

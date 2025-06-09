@@ -1,5 +1,5 @@
 export const typeDefs = `#graphql
-  type User{
+  type User {
   id: ID!
   firstName: String!
   lastName: String
