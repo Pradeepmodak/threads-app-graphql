@@ -14,7 +14,6 @@ app.get('/', (req, res) => {
 });
 
 // Initialize the GraphQL server
-const gqlServer = await createApolloGraphqlServer();
 app.use('/graphql', expressMiddleware(await createApolloGraphqlServer(),{context:async({req})=>{
 const token =req.headers['token']
 try{

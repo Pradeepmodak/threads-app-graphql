@@ -2,7 +2,7 @@ import {createHmac, randomBytes} from 'node:crypto';
 import JWT from 'jsonwebtoken';
 import { prismaClient } from '../lib/db';
 import { User } from '../grapgql/user';
-const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+const JWT_SECRET =  'secret';
 export interface CreateUserPayload{
     firstName:string
     lastName?:string

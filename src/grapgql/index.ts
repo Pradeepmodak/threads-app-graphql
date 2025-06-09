@@ -6,12 +6,8 @@ const gqlServer = new ApolloServer({
   typeDefs:`
    type Query {
      ${User.queries}
-     getContext:(_:any,parameters:any,context)=>{
-     console.log("Context:",context);
-     return "Okay";
-     }
    }
-    type Mutation{
+   type Mutation{
         ${User.mutations}
   }
 `,
